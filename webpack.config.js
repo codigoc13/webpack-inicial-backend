@@ -26,6 +26,10 @@ module.exports = {
         test: /styles.css$/,
         use: [MiniCssExtract.loader, 'css-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        loader: 'file-loader',
+      },
     ],
   },
 
@@ -34,8 +38,7 @@ module.exports = {
   plugins: [
     new HtmlWebPack({
       title: 'Mi Webpack App',
-      // filename: 'holamundo.html', //opcional
-      template: './src/index.html',
+      template: 'src/index.html',
     }),
     new MiniCssExtract({
       // filename: '[name].[fullhash].css',
@@ -43,4 +46,6 @@ module.exports = {
       ignoreOrder: false,
     }),
   ],
+
+  devServer: { watchFiles: ['src/*.html'], hot: true },
 }
